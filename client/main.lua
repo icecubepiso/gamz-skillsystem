@@ -1,16 +1,4 @@
-ESX = nil
-
 Citizen.CreateThread(function()
-	while ESX == nil do
-		Citizen.Wait(20)
-		
-		ESX = exports["es_extended"]:getSharedObject()
-	end
-
-	while not ESX.IsPlayerLoaded() do
-		Citizen.Wait(5)
-	end
-
 	FetchSkills()
 
 	while true do

@@ -1,8 +1,14 @@
+fx_version 'cerulean'
+games {'gta5'}
+lua54 'yes'
 
-resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
+shared_scripts {
+    '@es_extended/imports.lua',
+    '@ox_lib/init.lua'
+}
 
 server_scripts {
-    '@mysql-async/lib/MySQL.lua',
+    '@oxmysql/lib/MySQL.lua',
     'server/main.lua',
     'config.lua'
 }

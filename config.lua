@@ -1,8 +1,22 @@
 Config = {}
 
-Config.UpdateFrequency = 300 -- seconds interval between removing values 
+Config.Main = {
 
-Config.Notifications = true -- notification when skill is added
+    useNotifications = true, -- notification when skill is added
+
+    updateFrequency = 300, -- seconds interval between removing values 
+
+    notificationType = false, -- Type of notification you want to use ('ESX', 'OX', 'MYTHIC', false) - False is default gamz norify style
+
+}
+
+Config.Language = {
+
+    menuAlign = 'center',
+
+    menuTitle = 'Skills',
+}
+
 
 Config.Skills = {
     ["Stamina"] = {

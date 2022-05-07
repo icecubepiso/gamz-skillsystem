@@ -4,8 +4,6 @@ FetchSkills = function()
             for status, value in pairs(data) do
                 if Config.Skills[status] then
                     Config.Skills[status]["Current"] = value["Current"]
-                else
-                    print("Removing: " .. status) 
                 end
             end
 		end
@@ -25,13 +23,13 @@ SkillMenu = function()
 
 	ESX.UI.Menu.Open("default", GetCurrentResourceName(), "skill_menu",
 	{
-		["title"] = "Skills",
-		["align"] = "center",
+		["title"] = Config.Language.menuTitle,
+		["align"] = Config.Language.menuAlign,
 		["elements"] = skills
 
 	}, function(data, menu)
-	
-        
+
+
 	end, function(data, menu)
 		menu.close()
 	end)
@@ -44,7 +42,6 @@ end
 UpdateSkill = function(skill, amount)
 
     if not Config.Skills[skill] then
-        print("Skill " .. skill .. " doesn't exist")
         return
     end
 
@@ -62,7 +59,15 @@ UpdateSkill = function(skill, amount)
 
     if Config.Notifications then
         if tonumber(amount) > 0 then
-            Notification("~g~+" .. amount .. "% ~s~" .. skill)
+            if not Config.Main.notificationType then
+                Notification("~g~+" .. amount .. "% ~s~" .. skill)
+            elseif Config.Main.notificationType == 'ESX' then
+                ESX.ShowNotification("~g~+" .. amount .. "% ~s~" .. skill)
+            elseif Config.Main.notificationType == 'OX' then
+                lib.notify({title = "~g~+" .. amount .. "% ~s~" .. skill, type = 'inform'})
+            elseif Config.Main.notificationType == 'MYTHIC' then
+                exports.mythic_notify:SendAlert('inform', "~g~+" .. amount .. "% ~s~" .. skill)
+            end
         end
     end
 	TriggerServerEvent("gamz-skillsystem:update", json.encode(Config.Skills))

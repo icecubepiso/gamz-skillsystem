@@ -1,9 +1,3 @@
-local ESX = nil
-
-TriggerEvent('esx:getSharedObject', function(obj)
-	ESX = obj 
-end)
-
 ESX.RegisterServerCallback("gamz-skillsystem:fetchStatus", function(source, cb)
      local src = source
      local user = ESX.GetPlayerFromId(src)
